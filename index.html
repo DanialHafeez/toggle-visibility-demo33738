@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Visibility Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .toggle-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+            font-weight: 600;
+        }
+        
+        .toggle-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 117, 252, 0.6);
+        }
+        
+        .toggle-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .content-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            transition: all 0.4s ease;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+            text-align: left;
+            transition: all 0.4s ease;
+        }
+        
+        .content.hidden {
+            opacity: 0;
+            transform: translateY(10px);
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+        }
+        
+        .status-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .visible .indicator-dot {
+            background-color: #28a745;
+        }
+        
+        .hidden .indicator-dot {
+            background-color: #dc3545;
+        }
+        
+        .instructions {
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            color: #666;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .toggle-btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Toggle Visibility</h1>
+        <p class="subtitle">Click the button to show/hide the content</p>
+        
+        <div class="toggle-container">
+            <button id="toggleBtn" class="toggle-btn">Hide Content</button>
+        </div>
+        
+        <div class="status-indicator visible">
+            <div class="indicator-dot"></div>
+            <span>Content is currently visible</span>
+        </div>
+        
+        <div class="content-box">
+            <p id="content" class="content">
+                Hello world this is danial hafeez 33738 and 
+                this is a simple demonstration of toggling content visibility using JavaScript.
+                 Click the button above to hide or show this content.
+            </p>
+        </div>
+        
+       
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('toggleBtn');
+            const content = document.getElementById('content');
+            const statusIndicator = document.querySelector('.status-indicator');
+            
+            toggleBtn.addEventListener('click', function() {
+                // Toggle the 'hidden' class on the content
+                content.classList.toggle('hidden');
+                
+                // Update button text
+                if (content.classList.contains('hidden')) {
+                    toggleBtn.textContent = 'Show Content';
+                    statusIndicator.classList.remove('visible');
+                    statusIndicator.classList.add('hidden');
+                    statusIndicator.querySelector('span').textContent = 'Content is currently hidden';
+                } else {
+                    toggleBtn.textContent = 'Hide Content';
+                    statusIndicator.classList.remove('hidden');
+                    statusIndicator.classList.add('visible');
+                    statusIndicator.querySelector('span').textContent = 'Content is currently visible';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
